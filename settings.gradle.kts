@@ -8,3 +8,4 @@
  */
 
 rootProject.name = "acceptance-testing-octopus"
+include("plain-junit-example-acceptance-test")
