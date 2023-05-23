@@ -45,6 +45,6 @@ data class SinglesMatch(
             }
             Score.Deuce -> TODO()
             Score.Adv -> TODO()
-            Score.Win -> throw IllegalStateException("Match already won")
+            Score.Win -> error("Match already won")
         }
 }
