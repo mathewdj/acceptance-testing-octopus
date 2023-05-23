@@ -5,8 +5,7 @@ enum class Score {
     P15,
     P30,
     P40,
-    All,
     Deuce,
-    AdvIn,
-    AdvOut
+    Adv,
+    Win
 }
