@@ -8,7 +8,7 @@ data class SinglesMatch(
         val score = score(player1Score, player2Score)
         val postMatch = this.copy(player1Score = score)
 
-        if (postMatch.player2Score == Score.P40) {
+        if (postMatch.player1Score == Score.Deuce && postMatch.player2Score == Score.P40) {
             return SinglesMatch(Score.Deuce, Score.Deuce)
         }
         return postMatch
@@ -18,7 +18,7 @@ data class SinglesMatch(
         val score = score(player2Score, player1Score)
         val postMatch = this.copy(player2Score = score)
 
-        if (postMatch.player1Score == Score.P40) {
+        if (postMatch.player2Score == Score.Deuce && postMatch.player1Score == Score.P40) {
             return SinglesMatch(Score.Deuce, Score.Deuce)
         }
         return postMatch

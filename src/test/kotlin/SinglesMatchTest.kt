@@ -94,6 +94,8 @@ class SinglesMatchTest {
     @Nested
     @DisplayName("Deuce scenarios")
     inner class Deuce {
+        private val match = SinglesMatch(Deuce, Deuce)
+
         @Test
         fun `Reach a deuce when score is 40-40`() {
             val match = SinglesMatch(P30, P40)
@@ -101,9 +103,12 @@ class SinglesMatchTest {
         }
 
         @Test
-        fun `when in deuce player scores a point, then in adv`() {
-            val match = SinglesMatch(Deuce, Deuce)
+        fun `when in deuce player1 scores a point, then in adv`() {
             assertThat(match.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, Deuce))
+        }
+
+        @Test
+        fun `when in deuce player2 scores a point, then in adv`() {
             assertThat(match.player2ScoresAPoint()).isEqualTo(SinglesMatch(Deuce, Adv))
         }
     }
