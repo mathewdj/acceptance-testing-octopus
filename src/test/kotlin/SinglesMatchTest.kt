@@ -122,5 +122,10 @@ class SinglesMatchTest {
         fun `when player1 scores a point, Adv-40`() {
             assertThat(deuceMatch.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, P40))
         }
+
+        @Test
+        fun `when player2 scores a point, 40-Adv`() {
+            assertThat(deuceMatch.player2ScoresAPoint()).isEqualTo(SinglesMatch(P40, Adv))
+        }
     }
 }

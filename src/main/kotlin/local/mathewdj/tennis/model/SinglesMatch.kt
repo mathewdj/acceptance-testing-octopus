@@ -10,27 +10,29 @@ data class SinglesMatch(
         val score = score(player1Score, player2Score)
         val postMatch = this.copy(player1Score = score)
 
-        return when (postMatch.player1Score) {
-            Deuce -> when (postMatch.player2Score) {
-                P40 -> SinglesMatch(Deuce, Deuce)
-                else -> postMatch
-            }
-            Adv -> when (postMatch.player2Score) {
-                Deuce -> SinglesMatch(Adv, P40)
-                else -> postMatch
-            }
+        return otherPlayersScoreAffectsThings(postMatch)
+    }
+
+    private fun otherPlayersScoreAffectsThings(postMatch: SinglesMatch) = when (postMatch.player1Score) {
+        Deuce -> when (postMatch.player2Score) {
+            P40 -> SinglesMatch(Deuce, Deuce)
             else -> postMatch
         }
+        Adv -> when (postMatch.player2Score) {
+            Deuce -> SinglesMatch(Adv, P40)
+            else -> postMatch
+        }
+        else -> postMatch
     }
 
     fun player2ScoresAPoint(): SinglesMatch {
         val score = score(player2Score, player1Score)
         val postMatch = this.copy(player2Score = score)
 
-        if (postMatch.player2Score == Deuce && postMatch.player1Score == P40) {
-            return SinglesMatch(Deuce, Deuce)
-        }
-        return postMatch
+        //TODO might be simpler to duplicate code
+        val swapPlayerPositions = SinglesMatch(postMatch.player2Score, postMatch.player1Score)
+        val inversed = otherPlayersScoreAffectsThings(swapPlayerPositions)
+        return SinglesMatch(inversed.player2Score, inversed.player1Score)
     }
 
     private val belowDeuceScores = setOf(Love, P15, P30)
