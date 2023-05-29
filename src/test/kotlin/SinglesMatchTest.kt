@@ -104,12 +104,23 @@ class SinglesMatchTest {
 
         @Test
         fun `when in deuce player1 scores a point, then in adv`() {
-            assertThat(match.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, Deuce))
+            assertThat(match.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, P40))
         }
 
         @Test
         fun `when in deuce player2 scores a point, then in adv`() {
-            assertThat(match.player2ScoresAPoint()).isEqualTo(SinglesMatch(Deuce, Adv))
+            assertThat(match.player2ScoresAPoint()).isEqualTo(SinglesMatch(P40, Adv))
+        }
+    }
+
+    @Nested
+    @DisplayName("Advantage scenarios")
+    inner class AdvantageScenarios {
+        private val deuceMatch = SinglesMatch(Deuce, Deuce)
+
+        @Test
+        fun `when player1 scores a point, Adv-40`() {
+            assertThat(deuceMatch.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, P40))
         }
     }
 }
