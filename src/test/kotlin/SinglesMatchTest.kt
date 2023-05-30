@@ -1,5 +1,11 @@
 import local.mathewdj.tennis.model.Score
-import local.mathewdj.tennis.model.Score.*
+import local.mathewdj.tennis.model.Score.Adv
+import local.mathewdj.tennis.model.Score.Deuce
+import local.mathewdj.tennis.model.Score.Love
+import local.mathewdj.tennis.model.Score.P15
+import local.mathewdj.tennis.model.Score.P30
+import local.mathewdj.tennis.model.Score.P40
+import local.mathewdj.tennis.model.Score.Win
 import local.mathewdj.tennis.model.SinglesMatch
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
