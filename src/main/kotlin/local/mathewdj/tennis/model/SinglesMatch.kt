@@ -60,7 +60,10 @@ data class SinglesMatch(
                 }
             }
             Deuce -> Adv
-            Adv -> TODO()
+            Adv -> when (otherPlayerScore) {
+                P40 -> Win
+                else -> TODO()
+            }
             Win -> error("Match already won")
         }
 }
