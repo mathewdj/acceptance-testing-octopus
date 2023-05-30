@@ -1,12 +1,13 @@
+
 import local.mathewdj.tennis.model.Score
 import local.mathewdj.tennis.model.Score.Adv
-import local.mathewdj.tennis.model.Score.Deuce
 import local.mathewdj.tennis.model.Score.Love
 import local.mathewdj.tennis.model.Score.P15
 import local.mathewdj.tennis.model.Score.P30
 import local.mathewdj.tennis.model.Score.P40
 import local.mathewdj.tennis.model.Score.Win
 import local.mathewdj.tennis.model.SinglesMatch
+import local.mathewdj.tennis.model.SinglesMatch.Companion.deuceMatch
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -100,32 +101,30 @@ class SinglesMatchTest {
     @Nested
     @DisplayName("Deuce scenarios")
     inner class Deuce {
-        private val match = SinglesMatch(Deuce, Deuce)
-
         @Test
         fun `Reach a deuce when score is 40-40`() {
             val match = SinglesMatch(P30, P40)
-            assertThat(match.player1ScoresAPoint()).isEqualTo(SinglesMatch(Deuce, Deuce))
+            assertThat(match.player1ScoresAPoint()).isEqualTo(deuceMatch)
         }
 
         @Test
         fun `when in deuce player1 scores a point, then in adv`() {
-            assertThat(match.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, P40))
+            assertThat(deuceMatch.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, P40))
         }
 
         @Test
         fun `when in deuce player2 scores a point, then in adv`() {
-            assertThat(match.player2ScoresAPoint()).isEqualTo(SinglesMatch(P40, Adv))
+            assertThat(deuceMatch.player2ScoresAPoint()).isEqualTo(SinglesMatch(P40, Adv))
         }
 
         @Test
         fun `when player1 scores a point, Adv-40`() {
-            assertThat(match.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, P40))
+            assertThat(deuceMatch.player1ScoresAPoint()).isEqualTo(SinglesMatch(Adv, P40))
         }
 
         @Test
         fun `when player2 scores a point, 40-Adv`() {
-            assertThat(match.player2ScoresAPoint()).isEqualTo(SinglesMatch(P40, Adv))
+            assertThat(deuceMatch.player2ScoresAPoint()).isEqualTo(SinglesMatch(P40, Adv))
         }
     }
 
@@ -143,6 +142,18 @@ class SinglesMatchTest {
         fun `when player2 scores a point, then wins the game`() {
             val match = SinglesMatch(P40, Adv)
             assertThat(match.player2ScoresAPoint()).isEqualTo(SinglesMatch(P40, Win))
+        }
+
+        @Test
+        fun `when player2 on 40 scores a point, then player1 loses adv`() {
+            val match = SinglesMatch(Adv, P40)
+            assertThat(match.player2ScoresAPoint()).isEqualTo(deuceMatch)
+        }
+
+        @Test
+        fun `when player1 on 40 scores a point, then player2 loses adv`() {
+            val match = SinglesMatch(P40, Adv)
+            assertThat(match.player1ScoresAPoint()).isEqualTo(deuceMatch)
         }
     }
 }

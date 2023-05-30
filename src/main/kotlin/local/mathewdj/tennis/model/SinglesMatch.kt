@@ -13,6 +13,10 @@ data class SinglesMatch(
     private val player2Score: Score = Love,
 ) {
     fun player1ScoresAPoint(): SinglesMatch {
+        if (player1Score == P40 && player2Score == Adv) {
+            return deuceMatch
+        }
+
         val score = score(player1Score, player2Score)
         val postMatch = this.copy(player1Score = score)
 
@@ -21,7 +25,7 @@ data class SinglesMatch(
 
     private fun otherPlayersScoreAffectsThings(postMatch: SinglesMatch) = when (postMatch.player1Score) {
         Deuce -> when (postMatch.player2Score) {
-            P40 -> SinglesMatch(Deuce, Deuce)
+            P40 -> deuceMatch
             else -> postMatch
         }
         Adv -> when (postMatch.player2Score) {
@@ -32,6 +36,10 @@ data class SinglesMatch(
     }
 
     fun player2ScoresAPoint(): SinglesMatch {
+        if (player2Score == P40 && player1Score == Adv) {
+            return deuceMatch
+        }
+
         val score = score(player2Score, player1Score)
         val postMatch = this.copy(player2Score = score)
 
@@ -66,4 +74,7 @@ data class SinglesMatch(
             }
             Win -> error("Match already won")
         }
+    companion object {
+        val deuceMatch = SinglesMatch(Deuce, Deuce)
+    }
 }
