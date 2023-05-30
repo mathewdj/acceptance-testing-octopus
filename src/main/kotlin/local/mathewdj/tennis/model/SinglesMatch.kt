@@ -17,8 +17,7 @@ data class SinglesMatch(
             return deuceMatch
         }
 
-        val score = score(player1Score, player2Score)
-        val postMatch = this.copy(player1Score = score)
+        val postMatch = score(player1Score, player2Score)
 
         return otherPlayersScoreAffectsThings(postMatch)
     }
@@ -40,11 +39,8 @@ data class SinglesMatch(
             return deuceMatch
         }
 
-        val score = score(player2Score, player1Score)
-        val postMatch = this.copy(player2Score = score)
-
         //TODO might be simpler to duplicate code
-        val swapPlayerPositions = SinglesMatch(postMatch.player2Score, postMatch.player1Score)
+        val swapPlayerPositions = score(player2Score, player1Score)
         val inversed = otherPlayersScoreAffectsThings(swapPlayerPositions)
         return SinglesMatch(inversed.player2Score, inversed.player1Score)
     }
@@ -53,27 +49,28 @@ data class SinglesMatch(
 
     private fun score(currentScore: Score, otherPlayerScore: Score) =
         when (currentScore) {
-            Love -> P15
-            P15 -> P30
+            Love -> SinglesMatch(P15, otherPlayerScore)
+            P15 -> SinglesMatch(P30, otherPlayerScore)
             P30 -> {
                 when (otherPlayerScore) {
-                    P40 -> Deuce
-                    else -> P40
+                    P40 -> SinglesMatch(Deuce, otherPlayerScore)
+                    else -> SinglesMatch(P40, otherPlayerScore)
                 }
             }
             P40 -> {
                 when (otherPlayerScore) {
-                    in belowDeuceScores -> Win
+                    in belowDeuceScores -> SinglesMatch(Win, otherPlayerScore)
                     else -> TODO()
                 }
             }
-            Deuce -> Adv
+            Deuce -> SinglesMatch(Adv, otherPlayerScore)
             Adv -> when (otherPlayerScore) {
-                P40 -> Win
+                P40 -> SinglesMatch(Win, otherPlayerScore)
                 else -> TODO()
             }
             Win -> error("Match already won")
         }
+
     companion object {
         val deuceMatch = SinglesMatch(Deuce, Deuce)
     }
