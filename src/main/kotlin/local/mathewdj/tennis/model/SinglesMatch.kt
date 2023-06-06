@@ -37,14 +37,14 @@ data class SinglesMatch(
                 when (otherPlayerScore) {
                     in belowDeuceScores -> SinglesMatch(Win, otherPlayerScore)
                     P40, Adv -> deuceMatch
-                    else -> TODO()
+                    else -> throw IllegalStateException("score 40-$otherPlayerScore is not supported")
                 }
             }
             Deuce -> SinglesMatch(Adv, P40)
             Adv -> when (otherPlayerScore) {
                 P40 -> SinglesMatch(Win, otherPlayerScore)
                 Deuce -> SinglesMatch(Adv, P40)
-                else -> TODO()
+                else -> throw IllegalStateException("Score $currentScore-$otherPlayerScore is not supported")
             }
             Win -> error("Match already won")
         }

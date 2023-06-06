@@ -19,8 +19,8 @@ import org.junit.jupiter.params.provider.EnumSource
 class SinglesMatchTest {
 
     @Nested
-    @DisplayName("Winning scenarios")
-    inner class Winning {
+    @DisplayName("Given 40-?")
+    inner class FourPoints {
 
         @ParameterizedTest(name = "Given player2 score is {0}, player1 scores, then player1 wins")
         @EnumSource(Score::class, names = ["Love", "P15", "P30"])
@@ -99,7 +99,7 @@ class SinglesMatchTest {
     }
 
     @Nested
-    @DisplayName("Deuce scenarios")
+    @DisplayName("Given Deuce")
     inner class Deuce {
         @Test
         fun `Reach a deuce when score is 40-40`() {
