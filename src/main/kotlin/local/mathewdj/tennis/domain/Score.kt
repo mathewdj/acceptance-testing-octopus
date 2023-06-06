@@ -1,4 +1,4 @@
-package local.mathewdj.tennis.model
+package local.mathewdj.tennis.domain
 
 enum class Score {
     Love,

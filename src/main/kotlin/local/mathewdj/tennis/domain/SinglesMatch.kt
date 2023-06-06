@@ -1,12 +1,12 @@
-package local.mathewdj.tennis.model
+package local.mathewdj.tennis.domain
 
-import local.mathewdj.tennis.model.Score.Adv
-import local.mathewdj.tennis.model.Score.Deuce
-import local.mathewdj.tennis.model.Score.Love
-import local.mathewdj.tennis.model.Score.P15
-import local.mathewdj.tennis.model.Score.P30
-import local.mathewdj.tennis.model.Score.P40
-import local.mathewdj.tennis.model.Score.Win
+import local.mathewdj.tennis.domain.Score.Adv
+import local.mathewdj.tennis.domain.Score.Deuce
+import local.mathewdj.tennis.domain.Score.Love
+import local.mathewdj.tennis.domain.Score.P15
+import local.mathewdj.tennis.domain.Score.P30
+import local.mathewdj.tennis.domain.Score.P40
+import local.mathewdj.tennis.domain.Score.Win
 
 data class SinglesMatch(
     private val player1Score: Score = Love,
