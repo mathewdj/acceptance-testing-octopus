@@ -27,27 +27,32 @@ data class SinglesMatch(
         when (currentScore) {
             Love -> SinglesMatch(P15, otherPlayerScore)
             P15 -> SinglesMatch(P30, otherPlayerScore)
-            P30 -> {
-                when (otherPlayerScore) {
-                    P40 -> deuceMatch
-                    else -> SinglesMatch(P40, otherPlayerScore)
-                }
-            }
-            P40 -> {
-                when (otherPlayerScore) {
-                    in belowDeuceScores -> SinglesMatch(Win, otherPlayerScore)
-                    P40, Adv -> deuceMatch
-                    else -> error("score 40-$otherPlayerScore is not supported")
-                }
-            }
+            P30 -> thirtyScore(otherPlayerScore)
+            P40 -> fortyScore(otherPlayerScore)
             Deuce -> SinglesMatch(Adv, P40)
-            Adv -> when (otherPlayerScore) {
-                P40 -> SinglesMatch(Win, otherPlayerScore)
-                Deuce -> SinglesMatch(Adv, P40)
-                else -> error("Score $currentScore-$otherPlayerScore is not supported")
-            }
+            Adv -> advScore(otherPlayerScore, currentScore)
             Win -> error("Match already won")
         }
+
+    private fun thirtyScore(otherPlayerScore: Score) = when (otherPlayerScore) {
+        P40 -> deuceMatch
+        else -> SinglesMatch(P40, otherPlayerScore)
+    }
+
+    private fun fortyScore(otherPlayerScore: Score) = when (otherPlayerScore) {
+        in belowDeuceScores -> SinglesMatch(Win, otherPlayerScore)
+        P40, Adv -> deuceMatch
+        else -> error("score 40-$otherPlayerScore is not supported")
+    }
+
+    private fun advScore(
+        otherPlayerScore: Score,
+        currentScore: Score
+    ) = when (otherPlayerScore) {
+        P40 -> SinglesMatch(Win, otherPlayerScore)
+        Deuce -> SinglesMatch(Adv, P40)
+        else -> error("Score $currentScore-$otherPlayerScore is not supported")
+    }
 
     companion object {
         val deuceMatch = SinglesMatch(Deuce, Deuce)
