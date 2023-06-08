@@ -1,16 +1,15 @@
 plugins {
     kotlin("jvm") version "1.8.21"
 
-    kotlin("plugin.spring") version "1.6.21"
-    id("org.springframework.boot") version "2.7.12"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-
-    id("io.gitlab.arturbosch.detekt") version "1.22.0"
+    kotlin("plugin.spring") version "1.8.21"
+    kotlin("plugin.jpa") version "1.8.21"
+    id("org.springframework.boot") version "3.1.0"
+    id("io.spring.dependency-management") version "1.1.0"
 }
 
 group = "local.mathewdj.acceptance.testing.octopus"
 version = "0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 allprojects {
     repositories {
@@ -20,15 +19,14 @@ allprojects {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.testcontainers:testcontainers:1.18.3")
-    testImplementation("org.testcontainers:postgresql:1.18.3")
 
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation(platform("org.junit:junit-bom:5.9.2"))
@@ -41,7 +39,7 @@ dependencies {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
@@ -53,10 +51,3 @@ tasks.test {
     }
 }
 
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-    reports {
-        html.required.set(true)
-        txt.required.set(true)
-        md.required.set(true)
-    }
-}
