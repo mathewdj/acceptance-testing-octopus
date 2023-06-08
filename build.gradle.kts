@@ -5,6 +5,8 @@ plugins {
     kotlin("plugin.jpa") version "1.8.21"
     id("org.springframework.boot") version "3.1.0"
     id("io.spring.dependency-management") version "1.1.0"
+
+    id("io.gitlab.arturbosch.detekt") version "1.23.0"
 }
 
 group = "local.mathewdj.acceptance.testing.octopus"
@@ -51,3 +53,10 @@ tasks.test {
     }
 }
 
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    reports {
+        html.required.set(true)
+        txt.required.set(true)
+        md.required.set(true)
+    }
+}
