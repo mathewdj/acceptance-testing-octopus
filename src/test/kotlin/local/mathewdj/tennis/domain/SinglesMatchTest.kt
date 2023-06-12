@@ -1,5 +1,5 @@
+package local.mathewdj.tennis.domain
 
-import local.mathewdj.tennis.domain.Score
 import local.mathewdj.tennis.domain.Score.Adv
 import local.mathewdj.tennis.domain.Score.Deuce
 import local.mathewdj.tennis.domain.Score.Love
@@ -7,7 +7,6 @@ import local.mathewdj.tennis.domain.Score.P15
 import local.mathewdj.tennis.domain.Score.P30
 import local.mathewdj.tennis.domain.Score.P40
 import local.mathewdj.tennis.domain.Score.Win
-import local.mathewdj.tennis.domain.SinglesMatch
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
