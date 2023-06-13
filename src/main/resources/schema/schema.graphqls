@@ -1,0 +1,28 @@
+type Query {
+    singlesMatches(id: String): [SinglesMatch!]!
+}
+
+type Mutation {
+    playerScoresPoint(playerNumber: Player!): SinglesMatch!
+}
+
+type SinglesMatch {
+    id: String!
+    player1Score: TennisScore!
+    player2Score: TennisScore!
+}
+
+enum TennisScore {
+    Love,
+    P15,
+    P30,
+    P40,
+    Adv,
+    Deuce,
+    Win
+}
+
+enum Player {
+    One,
+    Two
+}

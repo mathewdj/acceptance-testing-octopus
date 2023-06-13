@@ -25,8 +25,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    runtimeOnly("org.postgresql:postgresql")
 
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation(platform("org.junit:junit-bom:5.9.2"))
@@ -35,10 +36,10 @@ dependencies {
     testImplementation("io.cucumber:cucumber-java:7.12.0")
     testImplementation("io.cucumber:cucumber-junit:7.12.0")
 
-    implementation(platform("org.testcontainers:testcontainers-bom:1.17.3"))
-    testImplementation("org.testcontainers:postgresql:1.17.3")
-    testImplementation("org.testcontainers:testcontainers:1.17.3")
-    testImplementation("org.testcontainers:junit-jupiter:1.17.3")
+    implementation(platform("org.testcontainers:testcontainers-bom:1.17.6"))
+    testImplementation("org.testcontainers:postgresql:1.17.6")
+    testImplementation("org.testcontainers:testcontainers:1.17.6")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.6")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

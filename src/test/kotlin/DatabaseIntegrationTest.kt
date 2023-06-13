@@ -1,6 +1,8 @@
 package local.mathewdj.tennis
 
-import org.assertj.core.api.Assertions
+import local.mathewdj.tennis.local.mathewdj.tennis.domain.createSinglesMatchEntity
+import local.mathewdj.tennis.repository.SinglesMatchRepository
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,14 +21,30 @@ import org.testcontainers.junit.jupiter.Testcontainers
 class DatabaseIntegrationTest {
 
     @Autowired
-    private lateinit var jdbcTemplate: JdbcTemplate
+    private lateinit var singlesMatchRepository: SinglesMatchRepository
+
+    @Nested
+    inner class SinglesMatchPersistenceTest {
+        @Test
+        fun `should persist singles match`() {
+            val match = createSinglesMatchEntity()
+
+            val entity = singlesMatchRepository.save(match)
+
+            val matchInDb = singlesMatchRepository.findById(entity.id ?: throw IllegalStateException("no id"))
+            assertThat(matchInDb).usingRecursiveAssertion().ignoringFields("id").isEqualTo(match)
+        }
+    }
 
     @Nested
     inner class DatabaseConnectivitySmokeTest {
+        @Autowired
+        private lateinit var jdbcTemplate: JdbcTemplate
+
         @Test
         fun `when database is connected then it should be Postgres version 14`() {
             val actualDatabaseVersion = jdbcTemplate.queryForObject("SELECT version()", String::class.java)
-            Assertions.assertThat(actualDatabaseVersion).contains("PostgreSQL 14.5")
+            assertThat(actualDatabaseVersion).contains("PostgreSQL 14.5")
         }
     }
 

@@ -10,7 +10,7 @@ import local.mathewdj.tennis.domain.Score.Win
 import java.util.UUID
 
 data class SinglesMatch(
-    private val id: UUID,
+    private val id: UUID? = null,
     private val player1Score: Score = Love,
     private val player2Score: Score = Love,
 ) {
