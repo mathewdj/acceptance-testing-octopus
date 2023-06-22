@@ -50,7 +50,7 @@ class DatabaseIntegrationTest {
 
     companion object {
         @Container
-        private val postgreSQLContainer = PostgreSQLContainer<Nothing>("postgres:latest")
+        private val postgreSQLContainer = PostgreSQLContainer<Nothing>("postgres:14.5")
 
         @DynamicPropertySource
         @JvmStatic
