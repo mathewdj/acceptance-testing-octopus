@@ -7,6 +7,8 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
 
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
+
+    id("org.flywaydb.flyway") version "9.19.0"
 }
 
 group = "local.mathewdj.acceptance.testing.octopus"
@@ -28,6 +30,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     runtimeOnly("org.postgresql:postgresql")
+
+    implementation("org.flywaydb:flyway-core")
 
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation(platform("org.junit:junit-bom:5.9.2"))
