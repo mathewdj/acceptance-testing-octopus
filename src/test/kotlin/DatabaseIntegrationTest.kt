@@ -31,7 +31,7 @@ class DatabaseIntegrationTest {
 
             val entity = singlesMatchRepository.save(match)
 
-            val matchInDb = singlesMatchRepository.findById(entity.id ?: throw IllegalStateException("no id"))
+            val matchInDb = singlesMatchRepository.findById(entity.id ?: throw IllegalStateException("no id")).get()
             assertThat(matchInDb).usingRecursiveAssertion().ignoringFields("id").isEqualTo(match)
         }
     }
