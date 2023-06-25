@@ -158,6 +158,6 @@ class SinglesMatchTest {
     }
 
     companion object {
-        private val id = LongRange(1, 1_000_000).random()
+        private val id = IntRange(1, 1_000_000).random()
     }
 }

@@ -14,7 +14,7 @@ import java.time.LocalDateTime
 data class SinglesMatchEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: Int? = null,
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

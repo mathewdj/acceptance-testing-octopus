@@ -10,7 +10,7 @@ import java.util.UUID
 val timestamp: LocalDateTime = LocalDateTime.of(2023, 6, 14, 13, 0, 0, 0)
 
 fun createSinglesMatch(
-    id: Long? = null,
+    id: Int? = null,
     player1Score: Score = Score.P15,
     player2score: Score = Score.P40
 ) = SinglesMatch(
@@ -20,7 +20,7 @@ fun createSinglesMatch(
 )
 
 fun createSinglesMatchEntity(
-    id: Long? = null,
+    id: Int? = null,
     player1Score: Score = Score.P15,
     player2score: Score = Score.P40
 ) = SinglesMatchEntity(

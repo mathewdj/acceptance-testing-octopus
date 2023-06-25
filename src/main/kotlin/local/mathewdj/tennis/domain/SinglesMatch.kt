@@ -7,10 +7,9 @@ import local.mathewdj.tennis.domain.Score.P15
 import local.mathewdj.tennis.domain.Score.P30
 import local.mathewdj.tennis.domain.Score.P40
 import local.mathewdj.tennis.domain.Score.Win
-import java.util.UUID
 
 data class SinglesMatch(
-    private val id: Long? = null,
+    private val id: Int? = null,
     private val player1Score: Score = Love,
     private val player2Score: Score = Love,
 ) {
