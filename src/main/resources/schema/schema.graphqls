@@ -1,5 +1,5 @@
 type Query {
-    singlesMatches(id: String): [SinglesMatch!]!
+    singlesMatches(id: String!): [SinglesMatch!]!
 }
 
 type Mutation {

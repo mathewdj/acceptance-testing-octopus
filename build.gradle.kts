@@ -29,6 +29,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:7.2.0"))
+    implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
+
     runtimeOnly("org.postgresql:postgresql")
 
     implementation("org.flywaydb:flyway-core")
@@ -44,6 +47,8 @@ dependencies {
     testImplementation("org.testcontainers:postgresql:1.17.6")
     testImplementation("org.testcontainers:testcontainers:1.17.6")
     testImplementation("org.testcontainers:junit-jupiter:1.17.6")
+
+    testImplementation("io.mockk:mockk:1.13.5")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
