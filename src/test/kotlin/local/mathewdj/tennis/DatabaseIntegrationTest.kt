@@ -1,6 +1,5 @@
 package local.mathewdj.tennis
 
-import local.mathewdj.tennis.local.mathewdj.tennis.domain.createSinglesMatchEntity
 import local.mathewdj.tennis.repository.SinglesMatchRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
@@ -31,7 +30,7 @@ class DatabaseIntegrationTest {
 
             val entity = singlesMatchRepository.save(match)
 
-            val matchInDb = singlesMatchRepository.findById(entity.id ?: throw IllegalStateException("no id")).get()
+            val matchInDb = singlesMatchRepository.findById(entity.id ?: error("no id")).get()
             assertThat(matchInDb).usingRecursiveAssertion().ignoringFields("id").isEqualTo(match)
         }
     }

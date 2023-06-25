@@ -1,4 +1,4 @@
-package local.mathewdj.tennis.local.mathewdj.tennis.domain
+package local.mathewdj.tennis
 
 import local.mathewdj.tennis.domain.Score
 import local.mathewdj.tennis.domain.SinglesMatch

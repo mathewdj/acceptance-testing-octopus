@@ -7,7 +7,7 @@ type Mutation {
 }
 
 type SinglesMatch {
-    id: String!
+    id: Int!
     player1Score: TennisScore!
     player2Score: TennisScore!
 }
